@@ -277,18 +277,23 @@ void tkmax(sv &a){
 	}
 }
 // tim kiem cac sinh vien theo ma so sinh vien
-void timkiem(sv a)
+void timkiem(sv &a, int &dem)
 {
     int matk;
+    
     cout<<"Nhap vao ma sv can tim: ";
     cin>>matk;
   for(sv p = a; p->next != NULL; p = p->next){
 		if(matk==p->s.mssv)
 		{
 		    in(p->s);
+		  dem++;
 		 }
 		}
-		  
+	 if(dem==0)
+	{
+	    cout << "Khong tim thay sinh vien" << endl;
+	}
 }
 // tao mau cho phan trinh bay
 void tao_mau( int code ) {
@@ -299,6 +304,7 @@ void tao_mau( int code ) {
  
 int main(){
 	sv head = NULL;
+	int dem=0;
 	while(1){
 		tao_mau( 10 );
 		cout << " CHUONG TRINH QUAN LY SINH VIEN " << endl;
@@ -360,7 +366,7 @@ int main(){
 	}
 	    else if(lc==12)
 	    {
-	        timkiem(head);
+	        timkiem(head,dem);
 	    }
 	}
 	return 0;
