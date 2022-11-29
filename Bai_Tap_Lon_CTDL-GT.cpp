@@ -5,11 +5,11 @@ using namespace std;
 #include <windows.h>
 
 using namespace std;
- 
+
 struct Student{
-	string name,gioitinh, lop, sdt, noisinh;
+	string name,gioitinh, lop, sdt, noisinh, mssv;
 	double gpa;
-	int ngaysinh,mssv, thangsinh, namsinh, ngaymax;
+	int  ngaysinh, thangsinh, namsinh, ngaymax;
 };
  
 struct SV{
@@ -23,9 +23,20 @@ typedef struct SV* sv;
 sv makeNode(){
 	Student s;
 	cout << "Nhap thong tin sinh vien: \n";
-	cout << "Nhap ma so sinh vien: "; 
-	cin>>s.mssv;
-
+	 bool trueMSSV  = true;
+    do {
+        cout << "Nhap MSSV: ";
+        fflush(stdin); 
+        getline(cin, s.mssv); 
+        for (int i = 0; i < s.mssv.length(); i++) {
+            if (s.mssv[i] >= '0' && s.mssv[i] <= '9'){
+                trueMSSV = true;
+            } else {
+                trueMSSV = false;
+                break;
+            }
+        }
+    } while (! trueMSSV);
 	cout << "Nhap ten lop hoc: "; cin >> s.lop;
 	cout << "Nhap ho & ten: "; cin.ignore();
 	fflush(stdin);
@@ -279,7 +290,7 @@ void tkmax(sv &a){
 // tim kiem cac sinh vien theo ma so sinh vien
 void timkiem(sv &a, int &dem)
 {
-    int matk;
+    string matk;
     
     cout<<"Nhap vao ma sv can tim: ";
     cin>>matk;
@@ -320,7 +331,7 @@ int main(){
 		cout << "**||**   7. Hien thi danh sach cac sinh vien        **||**\n";
 		cout << "**||**   8. Sap xep cac sinh vien theo GPA          **||**\n";
 		cout << "**||**   9. Sap xep cac sinh vien theo MSSV         **||**\n";
-		cout << "**||**   10. Tim kiem sinh vien co GPA nho nhat     **||**\n";
+		cout << "**||**   10. Tim kiem sinh vien co GPA thap nhat    **||**\n";
 		cout << "**||**   11. Tim kiem sinh vien co GPA cao nhat     **||**\n";
 		cout << "**||**   12. Tim kiem sinh vien theo MSSV           **||**\n";
 		tao_mau( 11 );
